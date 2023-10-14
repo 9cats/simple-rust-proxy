@@ -1,6 +1,6 @@
 use hyper::{service::make_service_fn, service::service_fn, Body, Request, Response, Server};
 use std::convert::Infallible;
-use reqwest::Url;
+// use reqwest::Url;
 // use hyper::http::uri::InvalidUri;
 
 async fn handle_request(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
@@ -38,7 +38,7 @@ async fn main() {
         async move { Ok::<_, Infallible>(func) }
     });
 
-    let addr = ([127, 0, 0, 1], 3000).into();
+    let addr = ([0, 0, 0, 0], 3000).into();
     let server = Server::bind(&addr).serve(make_svc);
 
     if let Err(e) = server.await {
